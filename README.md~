@@ -1,0 +1,2 @@
+Vagrantfile files to generate Vagrant boxes based on the automatically generated
+boxes by https://roboxes.org/  (https://app.vagrantup.com/generic)

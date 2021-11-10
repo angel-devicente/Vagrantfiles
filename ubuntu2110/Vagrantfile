@@ -1,0 +1,46 @@
+# -*- mode: ruby -*-
+
+$script = <<-SCRIPT
+echo Starting provisioning...
+
+echo Installing Mage Desktop
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y ubuntu-mate-desktop^
+
+echo Getting rid of libre office
+apt-get remove -y --purge libreoffice* evolution* rhythmbox* celluloid* cheese*
+apt-get clean
+apt-get autoremove
+
+locale-gen en_GB
+locale-gen en_GB.UTF-8
+update-locale LANG=en_GB.UTF-8
+update-locale LANGUAGE=en_GB.UTF-8
+
+localectl set-x11-keymap es
+
+echo Finished provisioning...
+SCRIPT
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2110"
+  config.vm.box_version = "3.5.0"
+  
+#  if Vagrant.has_plugin?("vagrant-vbguest") then
+#    config.vbguest.auto_update = false
+#  end
+  
+  config.vm.synced_folder "shared_data", "/vagrant_data"
+
+  config.vm.provider "virtualbox" do |vb|
+     # Display the VirtualBox GUI when booting the machine
+     vb.gui = true
+     vb.memory = "4096"
+     vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+  end
+
+  config.vm.provision "shell", inline: $script
+
+end
