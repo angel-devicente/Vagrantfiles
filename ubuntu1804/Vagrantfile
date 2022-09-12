@@ -3,7 +3,7 @@
 $script = <<-SCRIPT
 echo Starting provisioning...
 
-echo Installing Mage Desktop
+echo Installing Mate Desktop
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y ubuntu-mate-desktop^

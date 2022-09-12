@@ -25,12 +25,14 @@ SCRIPT
 
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/ubuntu2104"
-  config.vm.box_version = "3.5.0"
-  
-#  if Vagrant.has_plugin?("vagrant-vbguest") then
-#    config.vbguest.auto_update = false
-#  end
+  config.vm.box = "generic/ubuntu2204"
+  config.vm.box_version = "4.1.10"
+
+  # see https://subscription.packtpub.com/book/virtualization-&-cloud/9781786464910/1/ch01lvl1sec12/enabling-virtualbox-guest-additions-in-vagrant
+  # vagrant vbguest --do install
+  if Vagrant.has_plugin?("vagrant-vbguest") then
+    config.vbguest.auto_update = false
+  end
   
   config.vm.synced_folder "shared_data", "/vagrant_data"
 
