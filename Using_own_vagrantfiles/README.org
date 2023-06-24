@@ -1,0 +1,5 @@
+When we need a local VirtualBox based off the Vagrantfiles in this repository,
+we just copy the corresponding Vagrantfile here to any directory and do "vagrant
+up". We will have a nice VirtualBox machine, with graphical interface, Spanish
+Keyboard and UK locale in a matter of minutes.
+
